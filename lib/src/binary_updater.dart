@@ -60,7 +60,7 @@ class BinaryUpdater {
 
 	/// - `0` = Successful
 	/// - `1` = No update needed ([from] == [to])
-	/// - `2` = No asset found
+	/// - `2` = No release binary found
 	/// - `3` = Failed to install update/File system errors
 	/// - `4` = Unknown error
 	Stream<ProgressValue<int>> update(
@@ -73,7 +73,7 @@ class BinaryUpdater {
 	) async* {
 		final target = to ?? await getLatest();
 		if ((from == target || (from > target && !allowDowngrade)) && !force) {
-			yield ProgressValue<int>(total: 0, progress: 0, value: 1);
+			yield ProgressValue<int>(value: 1);
 			return;
 		}
 		final assetBytes = getAssetbytes(
@@ -89,7 +89,7 @@ class BinaryUpdater {
 		);
 		await for (final progress in assetBytes) {
 			if (progress == null) {
-				yield ProgressValue<int>(total: 0, progress: 0, value: 1);
+				yield ProgressValue<int>(value: 1);
 				return;
 			}
 			yield ProgressValue<int>(total: progress.total, progress: progress.progress);
@@ -118,6 +118,6 @@ class BinaryUpdater {
 				return;
 			}
 		}
-		yield ProgressValue(total: 0, progress: 0, value: 4);
+		yield ProgressValue<int>(value: 4);
 	}
 }

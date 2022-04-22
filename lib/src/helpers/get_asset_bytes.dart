@@ -33,7 +33,6 @@ Stream<ProgressValue<List<int>>?> getAssetbytes(
 			List<int> bytes = [];
 			ProgressValue<List<int>> progress = ProgressValue<List<int>>(
 				total: assetResponse.contentLength,
-				progress: 0,
 			);
 			await for (final data in assetResponse) {
 				yield progress;

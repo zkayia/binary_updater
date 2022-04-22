@@ -7,8 +7,8 @@ class ProgressValue<T> {
 	final T? value;
 	
 	ProgressValue({
-		required this.total,
-		required this.progress,
+		this.total=0,
+		this.progress=0,
 		this.value,
 	});
 
