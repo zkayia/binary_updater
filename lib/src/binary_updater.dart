@@ -43,7 +43,9 @@ class BinaryUpdater {
 		architectures = architectures ?? BinaryArchitectures(),
 		httpClient = httpClient ?? HttpClient();
 
-	Future<Version?> getLatest([bool force=false]) async {
+	void dispose() => httpClient.close(force: true);
+
+	Future<Version?> getLatest({bool force=false}) async {
 		if (_latest == null || force) {
 			final response = await Uri.https(
 				"api.github.com",
