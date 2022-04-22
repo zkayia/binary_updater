@@ -57,19 +57,20 @@ class BinaryUpdater {
 	}
 
 	/// - `0` = Successful
-	/// - `1` = No update found ([from] >= [to])
+	/// - `1` = No update needed ([from] == [to])
 	/// - `2` = No asset found
 	/// - `3` = Failed to install update/File system errors
 	/// - `4` = Unknown error
 	Stream<ProgressValue<int>> update(
 		Version from,
-		[
-			Version? to,
+		Version? to,
+		{
 			bool force=false,
-		]
+			bool allowDowngrade=false,
+		}
 	) async* {
 		final target = to ?? await getLatest();
-		if (from >= target && !force) {
+		if ((from == target || (from > target && !allowDowngrade)) && !force) {
 			yield ProgressValue<int>(total: 0, progress: 0, value: 1);
 			return;
 		}
