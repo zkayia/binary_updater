@@ -11,6 +11,7 @@ import 'package:binary_updater/src/models/binary_architectures.dart';
 import 'package:binary_updater/src/models/binary_extensions.dart';
 import 'package:binary_updater/src/models/binary_platforms.dart';
 import 'package:binary_updater/src/models/progress_value.dart';
+import 'package:binary_updater/src/models/update_result.dart';
 import 'package:version/version.dart';
 
 
@@ -58,12 +59,7 @@ class BinaryUpdater {
 		return _latest;
 	}
 
-	/// - `0` = Successful
-	/// - `1` = No update needed ([from] == [to])
-	/// - `2` = No release binary found
-	/// - `3` = Failed to install update/File system errors
-	/// - `4` = Unknown error
-	Stream<ProgressValue<int>> update(
+	Stream<ProgressValue<UpdateResult>> update(
 		Version from,
 		Version? to,
 		{
@@ -73,7 +69,7 @@ class BinaryUpdater {
 	) async* {
 		final target = to ?? await getLatest();
 		if ((from == target || (from > target && !allowDowngrade)) && !force) {
-			yield ProgressValue<int>(value: 1);
+			yield ProgressValue<UpdateResult>(value: UpdateResult(exitCode: 1));
 			return;
 		}
 		final assetBytes = getAssetbytes(
@@ -89,13 +85,13 @@ class BinaryUpdater {
 		);
 		await for (final progress in assetBytes) {
 			if (progress == null) {
-				yield ProgressValue<int>(value: 1);
+				yield ProgressValue<UpdateResult>(value: UpdateResult(exitCode: 1));
 				return;
 			}
-			yield ProgressValue<int>(total: progress.total, progress: progress.progress);
+			yield ProgressValue<UpdateResult>(total: progress.total, progress: progress.progress);
 			if (progress.hasValue) {
 				httpClient.close();
-				final done = ProgressValue<int>(
+				final done = ProgressValue<UpdateResult>(
 					total: progress.total,
 					progress: progress.progress,
 				);
@@ -111,13 +107,13 @@ class BinaryUpdater {
 						runInShell: true,
 						mode: ProcessStartMode.detached,
 					);
-					yield done.copyWith(value: 0);
+					yield done.copyWith(value: UpdateResult(exitCode: 0));
 				} catch (e) {
-					yield done.copyWith(value: 3);
+					yield done.copyWith(value: UpdateResult(exitCode: 3, error: e.toString()));
 				}
 				return;
 			}
 		}
-		yield ProgressValue<int>(value: 4);
+		yield ProgressValue<UpdateResult>(value: UpdateResult(exitCode: 4));
 	}
 }
