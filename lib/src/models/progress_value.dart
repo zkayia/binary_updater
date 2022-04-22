@@ -16,6 +16,8 @@ class ProgressValue<T> {
 	
 	bool get hasValue => value != null;
 
+	num get percentage => 100 * progress / total;
+
 	ProgressValue<T> copyWith({
 		int? total,
 		int? progress,
