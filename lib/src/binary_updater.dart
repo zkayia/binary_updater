@@ -98,12 +98,16 @@ class BinaryUpdater {
 				try {
 					await File("$execPath.update").writeAsBytes(progress.value!);
 					await Process.start(
-						(
-							Platform.isWindows
-								? await File("$execPath.install.bat").writeAsString(batchInstallScript)
-								: await File("$execPath.install.sh").writeAsString(bashInstallScript)
-						).path,
-						["$pid", "$execPath.update", execPath],
+						Platform.isWindows
+							? (await File("$execPath.install.bat").writeAsString(batchInstallScript)).path
+							: "sh",
+						[
+							if (!Platform.isWindows)
+								(await File("$execPath.install.sh").writeAsString(bashInstallScript)).path,
+							"$pid",
+							"$execPath.update",
+							execPath,
+						],
 						runInShell: true,
 						mode: ProcessStartMode.detached,
 					);
