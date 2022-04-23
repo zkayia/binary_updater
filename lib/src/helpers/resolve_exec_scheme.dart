@@ -1,7 +1,17 @@
 
 
-String resolveExecScheme(String scheme, Map<String, String> schemeMap) => 
-	scheme.replaceAllMapped(
-		RegExp(r"(?<!{){(\w+)}(?!})"),
-		(match) => schemeMap[match.group(1)] ?? "",
-	);
+String resolveExecScheme(String scheme, Map<String, String> schemeMap) {
+	String result = scheme;
+	for (final variable in schemeMap.entries) {
+		result = result
+			.replaceAll(
+				RegExp("(?<!{){${variable.key}}(?!})"),
+				variable.value,
+			)
+			.replaceAll(
+				"{{${variable.key}}}",
+				"{${variable.key}}",
+			);
+	}
+	return result;
+}
