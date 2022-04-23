@@ -1,21 +1,36 @@
 
 
+/// A value with an associated progress.
 class ProgressValue<T> {
 
+	/// The total to which the [progress] heads.
+	/// 
+	/// Defaults to 0.
 	final int total;
+	/// The current progress.
+	/// 
+	/// Defaults to 0.
 	final int progress;
+	/// The value associated with this [ProgressValue].
+	/// 
+	/// Is null until the progress finishes.
 	final T? value;
 	
+	/// A value with an associated progress.
 	ProgressValue({
 		this.total=0,
 		this.progress=0,
 		this.value,
 	});
 
+	/// Is the [progress] equal or higher than the [total].
 	bool get isDone => progress >= total;
 	
+	/// Is the [value] defined (!= null).
 	bool get hasValue => value != null;
 
+	/// Returns the percentage of the current [progress] out of
+	/// the [total].
 	num get percentage => 100 * progress / total;
 
 	ProgressValue<T> copyWith({

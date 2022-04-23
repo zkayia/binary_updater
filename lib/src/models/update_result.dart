@@ -1,24 +1,56 @@
 
 
+/// An object representing the result of calling [BinaryUpdater.update()]
 class UpdateResult {
 
-	/// - `0` = Success
-	/// - `1` = No update needed
-	/// - `2` = No release binary found
-	/// - `3` = Failed to install update/File system errors
-	/// - `4` = Unknown error
+	/// The exit code of the update method.
+	/// 
+	/// - `0` Success.
+	/// - `1` No update needed.
+	/// - `2` No release binary found.
+	/// - `3` Update install failed/File system errors.
+	/// - `4` Unknown error.
 	final int exitCode;
 	final String? _error;
 	
+	/// An object representing the result of calling [BinaryUpdater.update()]
+	/// 
+	/// **[exitCode]\:**
+	/// The exit code of the update method.
+	/// 
+	/// - `0` Success.
+	/// - `1` No update needed.
+	/// - `2` No release binary found.
+	/// - `3` Update install failed/File system errors.
+	/// - `4` Unknown error.
+	/// 
+	/// **[error]\:**
+	/// The message of the [Exception] object.
+	/// 
+	/// If no [Exception] message was passsed, returns [message].
 	UpdateResult({
 		required this.exitCode,
 		String? error,
 	}) : _error = error;
 
+	/// The message of the [Exception] object.
+	/// 
+	/// If no [Exception] message was passsed, returns [message].
 	String get error => _error ?? message;
 	
+	/// Is the exit code not 0.
 	bool get hasError => exitCode != 0;
 
+	/// The message associated with the current [exitCode].
+	/// 
+	/// Differs from [error] as this is hard-coded.
+	/// 
+	/// The values are:
+	/// - `0` => `Success`
+	/// - `1` => `Update isnt't needed`
+	/// - `2` => `Could not find a release binary`
+	/// - `3` => `Failed to install the update to the file system`
+	/// - `4` => `Unknown error`
 	String get message => [
 		"Success",
 		"Update isnt't needed",
