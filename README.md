@@ -11,8 +11,16 @@ dependencies:
   binary_updater:
     git: https://github.com/zkayia/binary_updater
 ```
+Or to specify a version:
+```yaml
+dependencies:
+  binary_updater:
+    git:
+      url: https://github.com/zkayia/binary_updater
+      ref: <release-tag>
+```
 
-Run pub get:
+Complete installation by running pub get:
 ```
 dart pub get
 ```
