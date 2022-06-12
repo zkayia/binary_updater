@@ -5,7 +5,7 @@ class ProgressValue<T> {
 
 	/// The total to which the [progress] heads.
 	/// 
-	/// Defaults to 0.
+	/// Defaults to 1.
 	final int total;
 	/// The current progress.
 	/// 
@@ -18,7 +18,7 @@ class ProgressValue<T> {
 	
 	/// A value with an associated progress.
 	ProgressValue({
-		this.total=0,
+		this.total=1,
 		this.progress=0,
 		this.value,
 	});
