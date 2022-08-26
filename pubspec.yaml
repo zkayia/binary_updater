@@ -1,6 +1,6 @@
 name: binary_updater
 description: A library to auto-update a compiled binary from github releases.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/zkayia/binary_updater
 issue_tracker: https://github.com/zkayia/binary_updater/issues
 repository: https://github.com/zkayia/binary_updater
