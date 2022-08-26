@@ -11,7 +11,7 @@ class BinaryArchitectures {
 	/// 
 	/// Defaults to `x86`.
 	/// 
-	/// Used to resolve [BinaryUpdater.execScheme], is the value of `{arch}`
+	/// Used to resolve BinaryUpdater.execScheme, is the value of `{arch}`
 	/// when running on a x86 machine.
 	final String x86Name;
 	/// The architectures that fall into the x86 category.
@@ -25,7 +25,7 @@ class BinaryArchitectures {
 	/// 
 	/// Defaults to `x64`.
 	/// 
-	/// Used to resolve [BinaryUpdater.execScheme], is the value of `{arch}`
+	/// Used to resolve BinaryUpdater.execScheme, is the value of `{arch}`
 	/// when running on a x64 machine.
 	final String x64Name;
 	/// The architectures that fall into the x64 category.
@@ -39,7 +39,7 @@ class BinaryArchitectures {
 	/// 
 	/// Defaults to `arm32`.
 	/// 
-	/// Used to resolve [BinaryUpdater.execScheme], is the value of `{arch}`
+	/// Used to resolve BinaryUpdater.execScheme, is the value of `{arch}`
 	/// when running on a arm32 machine.
 	final String arm32Name;
 	/// The architectures that fall into the arm32 category.
@@ -53,7 +53,7 @@ class BinaryArchitectures {
 	/// 
 	/// Defaults to `arm64`.
 	/// 
-	/// Used to resolve [BinaryUpdater.execScheme], is the value of `{arch}`
+	/// Used to resolve BinaryUpdater.execScheme, is the value of `{arch}`
 	/// when running on a arm64 machine.
 	final String arm64Name;
 	/// The architectures that fall into the arm64 category.

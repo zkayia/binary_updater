@@ -8,7 +8,7 @@ extension UriGet on Uri {
 		try {
 			final request = await httpClient.getUrl(this);
 			return request.close();
-		} catch (err) {
+		} on Exception {
 			return null;
 		}
 	}

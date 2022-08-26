@@ -72,7 +72,9 @@ class UpdateResult {
 
 	@override
 	bool operator ==(Object other) {
-		if (identical(this, other)) return true;
+		if (identical(this, other)) {
+      return true;
+    }
 		return other is UpdateResult && other.exitCode == exitCode && other.error == error && other.message == message;
 	}
 

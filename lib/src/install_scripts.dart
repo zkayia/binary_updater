@@ -1,6 +1,6 @@
 
 
-final batchInstallScript = r"""
+final batchInstallScript = """
 @ECHO OFF
 TASKKILL /F %1
 MOVE /Y %2 %3

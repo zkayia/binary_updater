@@ -79,6 +79,9 @@ class BinaryUpdater {
 	/// 
 	/// Must be of form `username/reponame`.
 	/// 
+	/// **[execScheme]\:**
+	/// Format of the executable name used in Github releases.
+	/// 
 	/// **[exec]\:**
 	/// Name of the executable to update.
 	/// 
@@ -90,9 +93,6 @@ class BinaryUpdater {
 	/// Path of the executable to update.
 	/// 
 	/// Prefer absolute paths. Defaults to [Platform.resolvedExecutable].
-	/// 
-	/// **[execScheme]\:**
-	/// Format of the executable name used in Github releases.
 	/// 
 	/// The following variables will be automatically resolved:
 	/// - `{exec}` value of [exec].
@@ -135,9 +135,9 @@ class BinaryUpdater {
 	/// Don't forget to use [dispose] to close it.
 	BinaryUpdater({
 		required this.repo,
+		required this.execScheme,
 		String? exec,
 		String? execPath,
-		required this.execScheme,
 		BinaryExtensions? extensions,
 		BinaryPlatforms? platforms,
 		BinaryArchitectures? architectures,
@@ -240,7 +240,7 @@ class BinaryUpdater {
 						mode: ProcessStartMode.detached,
 					);
 					yield done.copyWith(value: UpdateResult(exitCode: 0));
-				} catch (e) {
+				} on Exception catch (e) {
 					yield done.copyWith(value: UpdateResult(exitCode: 3, error: e.toString()));
 				}
 				return;

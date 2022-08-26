@@ -11,21 +11,21 @@ class BinaryExtensions {
 	/// 
 	/// Defaults to `` (empty string).
 	/// 
-	/// Used to resolve [BinaryUpdater.execScheme], is the value of `{ext}`
+	/// Used to resolve BinaryUpdater.execScheme, is the value of `{ext}`
 	/// when running on a Linux machine.
 	final String linux;
 	/// The executable extension under MacOS.
 	/// 
 	/// Defaults to `` (empty string).
 	/// 
-	/// Used to resolve [BinaryUpdater.execScheme], is the value of `{ext}`
+	/// Used to resolve BinaryUpdater.execScheme, is the value of `{ext}`
 	/// when running on a MacOS machine.
 	final String macos;
 	/// The executable extension under Windows.
 	/// 
 	/// Defaults to `.exe`.
 	/// 
-	/// Used to resolve [BinaryUpdater.execScheme], is the value of `{ext}`
+	/// Used to resolve BinaryUpdater.execScheme, is the value of `{ext}`
 	/// when running on a Windows machine.
 	final String windows;
 

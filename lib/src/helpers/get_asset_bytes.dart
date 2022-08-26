@@ -30,7 +30,7 @@ Stream<ProgressValue<List<int>>?> getAssetbytes(
 					"failed to fetch the asset of version $version and name $asset",
 				);
 			}
-			List<int> bytes = [];
+			final List<int> bytes = [];
 			ProgressValue<List<int>> progress = ProgressValue<List<int>>(
 				total: assetResponse.contentLength,
 			);

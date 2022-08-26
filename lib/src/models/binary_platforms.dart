@@ -11,21 +11,21 @@ class BinaryPlatforms {
 	/// 
 	/// Defaults to `linux`.
 	/// 
-	/// Used to resolve [BinaryUpdater.execScheme], is the value of `{platform}`
+	/// Used to resolve BinaryUpdater.execScheme, is the value of `{platform}`
 	/// when running on a Linux machine.
 	final String linux;
 	/// The name of MacOS.
 	/// 
 	/// Defaults to `macos`.
 	/// 
-	/// Used to resolve [BinaryUpdater.execScheme], is the value of `{platform}`
+	/// Used to resolve BinaryUpdater.execScheme, is the value of `{platform}`
 	/// when running on a MacOS machine.
 	final String macos;
 	/// The name of Windows.
 	/// 
 	/// Defaults to `windows`.
 	/// 
-	/// Used to resolve [BinaryUpdater.execScheme], is the value of `{platform}`
+	/// Used to resolve BinaryUpdater.execScheme, is the value of `{platform}`
 	/// when running on a Windows machine.
 	final String windows;
 
